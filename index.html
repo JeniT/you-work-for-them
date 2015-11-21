@@ -57,54 +57,84 @@
 
     <div class="container">
       <h2 id="constituencyName"></h2>
-      <p><small>Figures are based on the 2011 census.</small></p>
-      <div id="population" class="row">
-        <div class="col-sm-6 local">
-          <p class="caption">Your constituency has around</p>
-          <p class="value"></p>
-          <p class="caption">residents</p>
+      <div id="statistics">
+        <p><small>Figures are based on the 2011 census and may be out of date.</small></p>
+        <div id="population" class="row">
+          <div class="col-sm-6 local">
+            <p class="caption">Your constituency has around</p>
+            <p class="value"></p>
+            <p class="caption">residents</p>
+          </div>
+          <div class="col-sm-6 average">
+            <p class="caption">The average constituency has around</p>
+            <p class="value">95856</p>
+            <p class="caption">residents</p>
+          </div>
         </div>
-        <div class="col-sm-6 average">
-          <p class="caption">The average constituency has around</p>
-          <p class="value">???</p>
-          <p class="caption">residents</p>
+
+        <hr>
+
+        <div id="households">
+          <div class="row">
+            <div class="col-sm-6 local">
+              <p class="caption">Household breakdown in your constituency</p>
+              <canvas id="householdTypes"></canvas>
+            </div>
+            <div class="col-sm-6 average">
+              <p class="caption">Average household breakdown</p>
+              <canvas id="averageHouseholdTypes"></canvas>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-6 local">
+              <p class="caption">Family households in your constituency</p>
+              <canvas id="familyHouseholdTypes"></canvas>
+            </div>
+            <div class="col-sm-6 average">
+              <p class="caption">Average family households</p>
+              <canvas id="averageFamilyHouseholdTypes"></canvas>
+            </div>
+          </div>
+          <hr>
+        </div>
+
+        <div id="emptyHomes" class="row">
+          <div class="col-sm-6 local">
+            <p class="caption">In your constituency</p>
+            <p class="value"></p>
+            <p class="caption">homes are sitting empty</p>
+          </div>
+          <div class="col-sm-6 average">
+            <p class="caption">In the average constituency</p>
+            <p class="value">1818</p>
+            <p class="caption">homes are sitting empty</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div id="shelters" class="row">
+          <div class="col-sm-6 local">
+            <p class="caption">In your constituency there are</p>
+            <p class="value"></p>
+            <p class="caption">homeless shelters</p>
+          </div>
+          <div class="col-sm-6 average">
+            <p class="caption">In the average constituency there are</p>
+            <p class="value">0.4</p>
+            <p class="caption">homeless shelters</p>
+          </div>
         </div>
       </div>
-
-      <hr>
-
-      <div id="emptyHomes" class="row">
-        <div class="col-sm-6 local">
-          <p class="caption">In your constituency</p>
-          <p class="value"></p>
-          <p class="caption">homes are sitting empty</p>
-        </div>
-        <div class="col-sm-6 average">
-          <p class="caption">In the average constituency</p>
-          <p class="value">???</p>
-          <p class="caption">homes are sitting empty</p>
-        </div>
-      </div>
-
-      <hr>
-
-      <div id="shelters" class="row">
-        <div class="col-sm-6 local">
-          <p class="caption">In your constituency there are</p>
-          <p class="value"></p>
-          <p class="caption">homeless shelters</p>
-        </div>
-        <div class="col-sm-6 average">
-          <p class="caption">In the average constituency there are</p>
-          <p class="value">???</p>
-          <p class="caption">homeless shelters</p>
-        </div>
+      <div id="unavailable">
+        <p>The Office of National Statistics only provides census data for constituencies in England and Wales.</p>
       </div>
 
       <hr>
 
       <footer>
-        <p>&copy; You work for them team at <a href="http://accountabilityhack.org/">Accountability Hack 2015</a></p>
+        <p>by the <b>You work for them</b> team at <a href="http://accountabilityhack.org/">Accountability Hack 2015</a></p>
       </footer>
     </div> <!-- /container -->
 

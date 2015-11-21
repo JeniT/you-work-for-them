@@ -40,3 +40,9 @@ div.row {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
+
+canvas {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
