@@ -58,11 +58,13 @@
     <div class="container">
       <h2 id="constituencyName"></h2>
       <div id="votes" class="row">
-        <div class="col-sm-6 local">
+        <div class="col-sm-5 local">
           <p class="caption">Your constituency's voters</p>
           <canvas id="constituencyVotes"></canvas>
         </div>
-        <div class="col-sm-6 average">
+        <div id="votesLegend" class="col-sm-2 legend">
+        </div>
+        <div class="col-sm-5 average">
           <p class="caption">How the nation voted</p>
           <canvas id="nationalVotes"></canvas>
         </div>
@@ -84,7 +86,7 @@
           </div>
           <div class="col-sm-6 average">
             <p class="caption">The average constituency has around</p>
-            <p class="value">95856</p>
+            <p class="value">95,856</p>
             <p class="caption">residents</p>
           </div>
         </div>
@@ -93,11 +95,13 @@
 
         <div id="agebreakdown">
           <div class="row">
-            <div class="col-sm-6 local">
+            <div class="col-sm-5 local">
               <p class="caption">Age breakdown in your constituency</p>
               <canvas id="ageGroups"></canvas>
             </div>
-            <div class="col-sm-6 average">
+            <div id="ageGroupsLegend" class="col-sm-2 legend">
+            </div>
+            <div class="col-sm-5 average">
               <p class="caption">Average age breakdown</p>
               <canvas id="averageAgeGroups"></canvas>
             </div>
@@ -107,11 +111,13 @@
 
         <div id="migration">
           <div class="row">
-            <div class="col-sm-6 local">
+            <div class="col-sm-5 local">
               <p class="caption">Passport breakdown in your constituency</p>
               <canvas id="passports"></canvas>
             </div>
-            <div class="col-sm-6 average">
+            <div id="passportsLegend" class="col-sm-2 legend">
+            </div>
+            <div class="col-sm-5 average">
               <p class="caption">Average passport breakdown</p>
               <canvas id="averagePassports"></canvas>
             </div>
@@ -121,22 +127,26 @@
 
         <div id="households">
           <div class="row">
-            <div class="col-sm-6 local">
+            <div class="col-sm-5 local">
               <p class="caption">Household breakdown in your constituency</p>
               <canvas id="householdTypes"></canvas>
             </div>
-            <div class="col-sm-6 average">
+            <div id="householdTypesLegend" class="col-sm-2 legend">
+            </div>
+            <div class="col-sm-5 average">
               <p class="caption">Average household breakdown</p>
               <canvas id="averageHouseholdTypes"></canvas>
             </div>
           </div>
           <hr>
           <div class="row">
-            <div class="col-sm-6 local">
+            <div class="col-sm-5 local">
               <p class="caption">Family households in your constituency</p>
               <canvas id="familyHouseholdTypes"></canvas>
             </div>
-            <div class="col-sm-6 average">
+            <div id="familyHouseholdTypesLegend" class="col-sm-2 legend">
+            </div>
+            <div class="col-sm-5 average">
               <p class="caption">Average family households</p>
               <canvas id="averageFamilyHouseholdTypes"></canvas>
             </div>
@@ -152,7 +162,7 @@
           </div>
           <div class="col-sm-6 average">
             <p class="caption">In the average constituency</p>
-            <p class="value">1818</p>
+            <p class="value">1,818</p>
             <p class="caption">homes are sitting empty</p>
           </div>
         </div>

@@ -203,10 +203,12 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
       $('#votes').show();
       var width = $('#constituencyVotes').parent().width() * 0.75;
       $('canvas').width(width).height(width);
+      $('.legend').height(width + 30);
       var ctx = $('#constituencyVotes').get(0).getContext("2d");
       constituencyVotesChart = new Chart(ctx).Doughnut(voteData);
       var ctx = $('#nationalVotes').get(0).getContext("2d");
       nationalVotesChart = new Chart(ctx).Doughnut(nationalVoteData);
+      $('#votesLegend').html(nationalVotesChart.generateLegend())
     };
 
     var addVotes = function(array, results, party) {
@@ -306,6 +308,7 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         ageGroupChart = new Chart(ctx).Doughnut(chartData);
         var ctx = $('#averageAgeGroups').get(0).getContext("2d");
         averageAgeGroupChart = new Chart(ctx).Doughnut(averageChartData);
+        $('#ageGroupsLegend').html(ageGroupChart.generateLegend())
        });
     };
 
@@ -344,8 +347,8 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
           label: "Europe"
         }, {
           value: oceania,
-          color: greens[4],
-          highlight: oranges[4],
+          color: greens[2],
+          highlight: oranges[2],
           label: "Antarctica and Oceania"
         }, {
           value: asia,
@@ -354,8 +357,8 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
           label: "Middle East and Asia"
         }, {
           value: africa,
-          color: greens[2],
-          highlight: oranges[2],
+          color: greens[4],
+          highlight: oranges[4],
           label: "Africa"
         }, {
           value: northAmerica,
@@ -421,6 +424,7 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         passportsChart = new Chart(ctx).Doughnut(chartData);
         var ctx = $('#averagePassports').get(0).getContext("2d");
         averagePassportsChart = new Chart(ctx).Doughnut(averageChartData);
+        $('#passportsLegend').html(passportsChart.generateLegend())
        });
     };
 
@@ -564,6 +568,8 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         averageHouseholdTypesChart = new Chart(ctx).Doughnut(averageChartData);
         var ctx = $('#averageFamilyHouseholdTypes').get(0).getContext("2d");
         averageFamilyHouseholdTypesChart = new Chart(ctx).Doughnut(averageFamilyChartData);
+        $('#householdTypesLegend').html(householdTypesChart.generateLegend())
+        $('#familyHouseholdTypesLegend').html(familyHouseholdTypesChart.generateLegend())
       });
     };
 

@@ -51,3 +51,26 @@ canvas {
 	vertical-align: bottom;
 	font-size: 1.6em;
 }
+
+.legend {
+	position: relative;
+}
+
+.doughnut-legend {
+	padding-left: 0;
+	position: absolute;
+	bottom: 0;
+}
+
+.doughnut-legend li {
+	display: block;
+	white-space: nowrap;
+	font-size: 0.8em;
+}
+
+.doughnut-legend li span {
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	margin-right: 10px;
+}
