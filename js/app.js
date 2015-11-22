@@ -30,6 +30,8 @@ var nationalResults = {
   "other": 0 
 };
 
+var ageGroupChart;
+var averageAgeGroupChart;
 var householdTypesChart;
 var averageHouseholdTypesChart;
 var familyHouseholdTypesChart;
@@ -146,6 +148,7 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         $('#statistics').show();
         $('#unavailable').hide();
         showPopulation(code);
+        showAgeGroups(code);
         showHouseholds(code);
         showEmptyHomes(code);
         showShelters(code);
@@ -220,6 +223,85 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         $("#population .local .value").text(population);
         $("#population").show();
       });
+    };
+
+    var showAgeGroups = function(code) {
+      $("#agebreakdown").hide();
+      if (ageGroupChart !== undefined) { ageGroupChart.destroy(); }
+      if (averageAgeGroupChart !== undefined) { averageAgeGroupChart.destroy(); }
+
+      loadONSstats("KS102EW", 1, code, function (data) {
+        var all = data["All categories: Age"];
+        var proportion = all / 56075912;
+
+        var elderly = adults = youngAdults = children = 0;
+        elderly += data["Age 65 to 74"];
+        elderly += data["Age 75 to 84"];
+        elderly += data["Age 85 to 89"];
+        elderly += data["Age 90 and over"];
+        adults += data["Age 25 to 29"];
+        adults += data["Age 30 to 44"];
+        adults += data["Age 45 to 59"];
+        adults += data["Age 60 to 64"];
+        youngAdults += data["Age 18 to 19"];
+        youngAdults += data["Age 20 to 24"];
+        children += data["Age 0 to 4"];
+        children += data["Age 5 to 7"];
+        children += data["Age 8 to 9"];
+        children += data["Age 10 to 14"];
+        children += data["Age 15"];
+        children += data["Age 16 to 17"];
+
+        chartData = [{
+          value: children,
+          color: greens[0],
+          highlight: oranges[0],
+          label: "Children"
+        }, {
+          value: youngAdults,
+          color: greens[1],
+          highlight: oranges[1],
+          label: "Young Adults"
+        }, {
+          value: adults,
+          color: greens[2],
+          highlight: oranges[2],
+          label: "Adults"
+        }, {
+          value: elderly,
+          color: greens[4],
+          highlight: oranges[4],
+          label: "Elderly"
+        }];
+
+        averageChartData = [{
+          value: Math.round(11970367 * proportion),
+          color: greys[0],
+          highlight: greens[0],
+          label: "Children"
+        }, {
+          value: Math.round(5267401 * proportion),
+          color: greys[1],
+          highlight: greens[1],
+          label: "Young Adults"
+        }, {
+          value: Math.round(29615071 * proportion),
+          color: greys[2],
+          highlight: greens[2],
+          label: "Adults"
+        }, {
+          value: Math.round(9223073 * proportion),
+          color: greys[4],
+          highlight: greens[4],
+          label: "Elderly"
+        }];
+
+        $('#agebreakdown').show();
+        var ctx = $('#ageGroups').get(0).getContext("2d");
+        ageGroupChart = new Chart(ctx).Doughnut(chartData);
+        var ctx = $('#averageAgeGroups').get(0).getContext("2d");
+        averageAgeGroupChart = new Chart(ctx).Doughnut(averageChartData);
+       });
     };
 
     var showHouseholds = function(code) {
