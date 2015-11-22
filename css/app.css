@@ -46,3 +46,8 @@ canvas {
 	margin-right: auto;
 	display: block;
 }
+
+.jumbotron label {
+	vertical-align: bottom;
+	font-size: 1.6em;
+}

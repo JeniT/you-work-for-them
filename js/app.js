@@ -1,5 +1,6 @@
 $('#statistics').hide();
 $('#unavailable').hide();
+$('#votes').hide();
 
 var nConstituencies = 585; // Scottish constituencies aren't included in census data
 
@@ -128,8 +129,10 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
       if (code == undefined) {
         code = mps[search];
       }
-      window.location.hash = '#' + code;
-      loadData(code);
+      if (code !== undefined) {
+        window.location.hash = '#' + code;
+        loadData(code);
+      }
       return false;
     });
 
@@ -161,8 +164,6 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
       if (nationalVotesChart !== undefined) { nationalVotesChart.destroy(); }
       var constituency = constituencyCodes[code];
       var results = constituency["results"];
-      var width = $('#constituencyVotes').parent().width();
-      $('canvas').width(width).height(width);
       voteData = [];
       addVotes(voteData, results, "Con"); 
       addVotes(voteData, results, "Lab"); 
@@ -191,6 +192,9 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
       addVotes(nationalVoteData, nationalResults, "UUP"); 
       addVotes(nationalVoteData, nationalResults, "other"); 
       addVotes(nationalVoteData, nationalResults, "DNV"); 
+      $('#votes').show();
+      var width = $('#constituencyVotes').parent().width() * 0.75;
+      $('canvas').width(width).height(width);
       var ctx = $('#constituencyVotes').get(0).getContext("2d");
       constituencyVotesChart = new Chart(ctx).Doughnut(voteData);
       var ctx = $('#nationalVotes').get(0).getContext("2d");
@@ -227,6 +231,7 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
 
       loadONSstats("KS105EW", 1, code, function (data) {
         var all = data["All categories: Household composition"];
+        var proportion = all / 23366044;
 
         var elderly = multigeneration = families = couples = singles = 0;
         elderly += data["One family only: All aged 65 and over"];
@@ -299,49 +304,50 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         }];
 
         averageChartData = [{
-          value: Math.round(5334676 / nConstituencies),
+          value: Math.round(5334676 * proportion),
           color: greys[0],
           highlight: greens[0],
           label: "Individuals"
         }, {
-          value: Math.round(4116716 / nConstituencies),
+          value: Math.round(4116716 * proportion),
           color: greys[1],
           highlight: greens[1],
           label: "Couples"
         }, {
-          value: Math.round(6790815 / nConstituencies),
+          value: Math.round(6790815 * proportion ),
           color: greys[2],
           highlight: greens[2],
           label: "Families with children"
         }, {
-          value: Math.round(2248347 / nConstituencies),
+          value: Math.round(2248347 * proportion ),
           color: greys[3],
           highlight: greens[3],
           label: "Multigeneration households"
         }, {
-          value: Math.round(4875490 / nConstituencies),
+          value: Math.round(4875490 * proportion ),
           color: greys[4],
           highlight: greens[4],
           label: "Elderly households"
         }];
 
+        proportion = families / 6790815;
         averageFamilyChartData = [{
-          value: Math.round(3557230 / nConstituencies),
+          value: Math.round(3557230 * proportion ),
           color: greys[0],
           highlight: greens[0],
           label: "Married parents"
         }, {
-          value: Math.round(949564 / nConstituencies),
+          value: Math.round(949564 * proportion ),
           color: greys[1],
           highlight: greens[1],
           label: "Cohabiting parents"
         }, {
-          value: Math.round(612625 / nConstituencies),
+          value: Math.round(612625 * proportion ),
           color: greys[2],
           highlight: greens[2],
           label: "Other families"
         }, {
-          value: Math.round(1671396 / nConstituencies),
+          value: Math.round(1671396 * proportion ),
           color: greys[3],
           highlight: greens[3],
           label: "Lone parents"
