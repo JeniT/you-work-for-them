@@ -41,6 +41,8 @@ var averageFamilyHouseholdTypesChart;
 var constituencyVotesChart;
 var nationalVotesChart;
 
+Chart.defaults.global.tooltipTemplate = "<%if (label){%><%=label%>: <%}%><%= value.toLocaleString() %>"
+
 $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.tsv"))
   .done(function (constituencyData, mpData, electionResultData) {
     var lines = constituencyData[0].split("\n")
@@ -223,7 +225,7 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
       $("#population").hide();
       loadONSstats("KS101EW", 1, code, function (data) {
         var population = data["All categories: Sex"];
-        $("#population .local .value").text(population);
+        $("#population .local .value").text(population.toLocaleString());
         $("#population").show();
       });
     };
@@ -259,44 +261,44 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
           value: children,
           color: greens[0],
           highlight: oranges[0],
-          label: "Children"
+          label: "Children 0-17"
         }, {
           value: youngAdults,
           color: greens[1],
           highlight: oranges[1],
-          label: "Young Adults"
+          label: "Young Adults 18-24"
         }, {
           value: adults,
           color: greens[2],
           highlight: oranges[2],
-          label: "Adults"
+          label: "Adults 25-64"
         }, {
           value: elderly,
           color: greens[3],
           highlight: oranges[3],
-          label: "Elderly"
+          label: "Elderly 65+"
         }];
 
         averageChartData = [{
           value: Math.round(11970367 * proportion),
           color: greys[0],
           highlight: greens[0],
-          label: "Children"
+          label: "Children 0-17"
         }, {
           value: Math.round(5267401 * proportion),
           color: greys[1],
           highlight: greens[1],
-          label: "Young Adults"
+          label: "Young Adults 18-24"
         }, {
           value: Math.round(29615071 * proportion),
           color: greys[2],
           highlight: greens[2],
-          label: "Adults"
+          label: "Adults 25-64"
         }, {
           value: Math.round(9223073 * proportion),
           color: greys[3],
           highlight: greens[3],
-          label: "Elderly"
+          label: "Elderly 65+"
         }];
 
         $('#agebreakdown').show();
@@ -569,7 +571,7 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
       $('#emptyHomes').hide();
       loadONSstats("KS401EW", 2, code, function (data) {
         var emptyHomes = data["Household spaces with no usual residents"];
-        $("#emptyHomes .local .value").text(emptyHomes);
+        $("#emptyHomes .local .value").text(emptyHomes.toLocaleString());
         $('#emptyHomes').show();
       });
     };
@@ -578,7 +580,7 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
       $('#shelters').hide();
       loadONSstats("QS101EW", 2, code, function (data) {
         var shelters = data["Communal establishments with persons sleeping rough identified"];
-        $('#shelters .local .value').text(shelters);
+        $('#shelters .local .value').text(shelters.toLocaleString());
         $('#shelters').show();
       });
     };
