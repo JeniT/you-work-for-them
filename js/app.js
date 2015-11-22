@@ -32,6 +32,8 @@ var nationalResults = {
 
 var ageGroupChart;
 var averageAgeGroupChart;
+var passportsChart;
+var averagePassportsChart;
 var householdTypesChart;
 var averageHouseholdTypesChart;
 var familyHouseholdTypesChart;
@@ -149,6 +151,7 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         $('#unavailable').hide();
         showPopulation(code);
         showAgeGroups(code);
+        showMigration(code);
         showHouseholds(code);
         showEmptyHomes(code);
         showShelters(code);
@@ -269,8 +272,8 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
           label: "Adults"
         }, {
           value: elderly,
-          color: greens[4],
-          highlight: oranges[4],
+          color: greens[3],
+          highlight: oranges[3],
           label: "Elderly"
         }];
 
@@ -291,8 +294,8 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
           label: "Adults"
         }, {
           value: Math.round(9223073 * proportion),
-          color: greys[4],
-          highlight: greens[4],
+          color: greys[3],
+          highlight: greens[3],
           label: "Elderly"
         }];
 
@@ -301,6 +304,121 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         ageGroupChart = new Chart(ctx).Doughnut(chartData);
         var ctx = $('#averageAgeGroups').get(0).getContext("2d");
         averageAgeGroupChart = new Chart(ctx).Doughnut(averageChartData);
+       });
+    };
+
+    var showMigration = function(code) {
+      $("#migration").hide();
+      if (passportsChart !== undefined) { passportsChart.destroy(); }
+      if (averagePassportsChart !== undefined) { averagePassportsChart.destroy(); }
+
+      loadONSstats("KS205EW", 1, code, function (data) {
+        var all = data["All usual residents"];
+        var proportion = all / 56075912;
+
+        var uk = europe = africa = asia = northAmerica = otherAmerica = oceania = none = 0;
+        uk += data["United Kingdom"];
+        uk += data["British Overseas Territories"];
+        europe += data["Republic of Ireland"];
+        europe += data["Other Europe: EU countries"];
+        europe += data["Other Europe: Non EU countries"];
+        africa += data["Africa"];
+        asia += data["Middle East and Asia"];
+        northAmerica += data["North America and the Caribbean"];
+        otherAmerica += data["Central America"];
+        otherAmerica += data["South America"];
+        oceania += data["Antarctica and Oceania"];
+        none += data["No passport"];
+
+        chartData = [{
+          value: uk,
+          color: greens[0],
+          highlight: oranges[0],
+          label: "United Kingdom"
+        }, {
+          value: europe,
+          color: greens[1],
+          highlight: oranges[1],
+          label: "Europe"
+        }, {
+          value: oceania,
+          color: greens[4],
+          highlight: oranges[4],
+          label: "Antarctica and Oceania"
+        }, {
+          value: asia,
+          color: greens[3],
+          highlight: oranges[3],
+          label: "Middle East and Asia"
+        }, {
+          value: africa,
+          color: greens[2],
+          highlight: oranges[2],
+          label: "Africa"
+        }, {
+          value: northAmerica,
+          color: greens[4],
+          highlight: oranges[4],
+          label: "North America"
+        }, {
+          value: otherAmerica,
+          color: greens[4],
+          highlight: oranges[4],
+          label: "Other America"
+        }, {
+          value: none,
+          color: "#CCCCCC",
+          highlight: "#CCCCCC",
+          label: "No passport"
+        }];
+
+        averageChartData = [{
+          value: Math.round(42458647 * proportion),
+          color: greys[0],
+          highlight: greens[0],
+          label: "United Kingdom"
+        }, {
+          value: Math.round(2498877 * proportion),
+          color: greys[1],
+          highlight: greens[1],
+          label: "Europe"
+        }, {
+          value: Math.round(2107025 * proportion),
+          color: greys[2],
+          highlight: greens[2],
+          label: "Antarctica and Oceania"
+        }, {
+          value: Math.round(1135432 * proportion),
+          color: greys[3],
+          highlight: greens[3],
+          label: "Middle East and Asia"
+        }, {
+          value: Math.round(520635 * proportion),
+          color: greys[4],
+          highlight: greens[4],
+          label: "Africa"
+        }, {
+          value: Math.round(336241 * proportion),
+          color: greys[4],
+          highlight: greens[4],
+          label: "North America"
+        }, {
+          value: Math.round(83490 * proportion),
+          color: greys[4],
+          highlight: greens[4],
+          label: "Other America"
+        }, {
+          value: Math.round(9458051 * proportion),
+          color: "#CCCCCC",
+          highlight: "#CCCCCC",
+          label: "No passport"
+        }];
+
+        $('#migration').show();
+        var ctx = $('#passports').get(0).getContext("2d");
+        passportsChart = new Chart(ctx).Doughnut(chartData);
+        var ctx = $('#averagePassports').get(0).getContext("2d");
+        averagePassportsChart = new Chart(ctx).Doughnut(averageChartData);
        });
     };
 
