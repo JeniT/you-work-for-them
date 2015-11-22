@@ -35,6 +35,8 @@ Our approach is to remind MPs of all the different people they represent. An MP 
 
 ## Lessons learnt
 
+We usability tested the service with four people pretending to be MPs. This provided valuable insights about the data and how best to present it. It would have been better to test the service with real MPs.
+
 There is not always good quality information about some of these topics MPs are discussing (for example, regarding the EU Referendum Bill, there are no proper statistics about how much of our law comes from Europe).
 
 It was surprisingly difficult to get a list of *current* MPs. We had to manually remove the name of the MP who has died since the election.
