@@ -57,8 +57,25 @@
 
     <div class="container">
       <h2 id="constituencyName"></h2>
+      <div id="votes" class="row">
+        <div class="col-sm-6 local">
+          <p class="caption">Your constituency's voters</p>
+          <canvas id="constituencyVotes"></canvas>
+        </div>
+        <div class="col-sm-6 average">
+          <p class="caption">National voters</p>
+          <canvas id="nationalVotes"></canvas>
+        </div>
+      </div>
+
+      <hr>
+
       <div id="statistics">
-        <p><small>Figures are based on the 2011 census and may be out of date.</small></p>
+        <div class="row">
+          <div class="col-sm-12">
+            <p><small>Figures are based on the 2011 census and may be out of date.</small></p>
+          </div>
+        </div>
         <div id="population" class="row">
           <div class="col-sm-6 local">
             <p class="caption">Your constituency has around</p>
