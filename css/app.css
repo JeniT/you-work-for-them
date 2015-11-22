@@ -52,7 +52,7 @@ canvas {
 }
 
 .jumbotron .container {
-	background-color: rgba(255,255,255,0.5);
+	background-color: rgba(255,255,255,0.8);
 	padding-bottom: 30px;
 }
 
@@ -82,4 +82,31 @@ canvas {
 	height: 15px;
 	width: 15px;
 	margin-right: 10px;
+}
+
+#occupations li {
+	display: block;
+}
+
+#occupations img {
+	max-height: 30px;
+	max-width: 30px;
+	position: absolute;
+}
+
+#occupations .graph {
+	display: inline-block;
+	height: 30px;
+	position: relative;
+	margin-left: 40px;
+	background-color: #18BC9C;
+}
+
+#occupations .average .graph {
+	background-color: #CCCCCC;
+}
+
+#occupations .value {
+	font-size: 1em;
+	font-weight: bold;
 }

@@ -157,6 +157,7 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         showHouseholds(code);
         showEmptyHomes(code);
         showShelters(code);
+        showOccupations(code);
       }
     };
 
@@ -588,6 +589,60 @@ $.when($.get("constituencies.tsv"), $.get("MPs.tsv"), $.get("election-results.ts
         var shelters = data["Communal establishments with persons sleeping rough identified"];
         $('#shelters .local .value').text(shelters.toLocaleString());
         $('#shelters').show();
+      });
+    };
+
+    var showOccupations = function(code) {
+      $('#occupations').hide();
+      var scale = 150;
+      loadONSstats("KS608EW", 1, code, function (data) {
+        var proportion = data["All categories: Occupation"] / 26526336;
+        $('#occupation1 .graph ').width(data["1. Managers  directors and senior officials"] / scale);
+        $('#occupation2 .graph ').width(data["2. Professional occupations"] / scale);
+        $('#occupation3 .graph ').width(data["3. Associate professional and technical occupations"] / scale);
+        $('#occupation4 .graph ').width(data["4. Administrative and secretarial occupations"] / scale);
+        $('#occupation5 .graph ').width(data["5. Skilled trades occupations"] / scale);
+        $('#occupation6 .graph ').width(data["6. Caring  leisure and other service occupations"] / scale);
+        $('#occupation7 .graph ').width(data["7. Sales and customer service occupations"] / scale);
+        $('#occupation8 .graph ').width(data["8. Process  plant and machine operatives"] / scale);
+        $('#occupation9 .graph ').width(data["9. Elementary occupations"] / scale);
+        $('#occupation1 .value').text(data["1. Managers  directors and senior officials"].toLocaleString());
+        $('#occupation2 .value').text(data["2. Professional occupations"].toLocaleString());
+        $('#occupation3 .value').text(data["3. Associate professional and technical occupations"].toLocaleString());
+        $('#occupation4 .value').text(data["4. Administrative and secretarial occupations"].toLocaleString());
+        $('#occupation5 .value').text(data["5. Skilled trades occupations"].toLocaleString());
+        $('#occupation6 .value').text(data["6. Caring  leisure and other service occupations"].toLocaleString());
+        $('#occupation7 .value').text(data["7. Sales and customer service occupations"].toLocaleString());
+        $('#occupation8 .value').text(data["8. Process  plant and machine operatives"].toLocaleString());
+        $('#occupation9 .value').text(data["9. Elementary occupations"].toLocaleString());
+        var averageOccupation1 = 2860702 * proportion;
+        var averageOccupation2 = 4615759 * proportion;
+        var averageOccupation3 = 3366313 * proportion;
+        var averageOccupation4 = 3034637 * proportion;
+        var averageOccupation5 = 3041957 * proportion;
+        var averageOccupation6 = 2492117 * proportion;
+        var averageOccupation7 = 2240869 * proportion;
+        var averageOccupation8 = 1919017 * proportion;
+        var averageOccupation9 = 2954965 * proportion;
+        $('#averageOccupation1 .graph ').width(averageOccupation1 / scale);
+        $('#averageOccupation2 .graph ').width(averageOccupation2 / scale);
+        $('#averageOccupation3 .graph ').width(averageOccupation3 / scale);
+        $('#averageOccupation4 .graph ').width(averageOccupation4 / scale);
+        $('#averageOccupation5 .graph ').width(averageOccupation5 / scale);
+        $('#averageOccupation6 .graph ').width(averageOccupation6 / scale);
+        $('#averageOccupation7 .graph ').width(averageOccupation7 / scale);
+        $('#averageOccupation8 .graph ').width(averageOccupation8 / scale);
+        $('#averageOccupation9 .graph ').width(averageOccupation9 / scale);
+        $('#averageOccupation1 .value').text(Math.round(averageOccupation1).toLocaleString());
+        $('#averageOccupation2 .value').text(Math.round(averageOccupation2).toLocaleString());
+        $('#averageOccupation3 .value').text(Math.round(averageOccupation3).toLocaleString());
+        $('#averageOccupation4 .value').text(Math.round(averageOccupation4).toLocaleString());
+        $('#averageOccupation5 .value').text(Math.round(averageOccupation5).toLocaleString());
+        $('#averageOccupation6 .value').text(Math.round(averageOccupation6).toLocaleString());
+        $('#averageOccupation7 .value').text(Math.round(averageOccupation7).toLocaleString());
+        $('#averageOccupation8 .value').text(Math.round(averageOccupation8).toLocaleString());
+        $('#averageOccupation9 .value').text(Math.round(averageOccupation9).toLocaleString());
+        $('#occupations').show();
       });
     };
 

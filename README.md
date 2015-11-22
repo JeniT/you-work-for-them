@@ -40,3 +40,13 @@ We usability tested the service with four people pretending to be MPs. This prov
 There is not always good quality information about some of these topics MPs are discussing (for example, regarding the EU Referendum Bill, there are no proper statistics about how much of our law comes from Europe).
 
 It was surprisingly difficult to get a list of *current* MPs. We had to manually remove the name of the MP who has died since the election.
+
+## Credits
+
+Tie by Gregor Črešnar from the Noun Project
+atom by Diego Naive from the Noun Project
+Suitcase by Carla Gom Mejorada from the Noun Project
+Wrench by Condimento Gráfico from the Noun Project
+caring by Luis Prado from the Noun Project
+Shopping Bag by Umut Büyükekmekci from the Noun Project
+Factory by Carla Gom Mejorada from the Noun Project
